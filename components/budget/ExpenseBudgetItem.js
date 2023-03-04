@@ -28,6 +28,7 @@ import ProcessExpenseButtons, {
 } from '../expenses/ProcessExpenseButtons';
 import FormattedMoneyAmount from '../FormattedMoneyAmount';
 import { Box, Flex } from '../Grid';
+import CommentIcon from '../icons/CommentIcon';
 import Link from '../Link';
 import LinkCollective from '../LinkCollective';
 import LoadingPlaceholder from '../LoadingPlaceholder';
@@ -197,6 +198,13 @@ const ExpenseBudgetItem = ({
                         ),
                       }}
                     />
+                    {' • '}
+                    {Boolean(expense?.comments.totalCount) && (
+                      <React.Fragment>
+                        {expense?.comments.totalCount}
+                        <CommentIcon size={20} color="lightgrey" />
+                      </React.Fragment>
+                    )}
                   </React.Fragment>
                 )}
               </P>
@@ -361,6 +369,9 @@ ExpenseBudgetItem.propTypes = {
   expense: PropTypes.shape({
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     legacyId: PropTypes.number,
+    comments: PropTypes.shape({
+      totalCount: PropTypes.number,
+    }),
     type: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     status: PropTypes.string.isRequired,
