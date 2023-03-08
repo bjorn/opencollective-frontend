@@ -523,7 +523,10 @@ export const expensesListFieldsFragment = gql`
       slug
       name
     }
+
   }
+
+  
 `;
 
 export const expensesListAdminFieldsFragment = gql`
